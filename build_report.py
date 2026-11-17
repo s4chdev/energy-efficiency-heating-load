@@ -85,7 +85,6 @@ def build_html(text: str) -> str:
         "Energy Efficiency Dataset (UCI ENB2012)\n\n",
         "",
     )
-    body = body.replace("(2–4 members as permitted)", "(2-4 members as permitted)")
     html = markdown.markdown(
         body, extensions=["tables", "fenced_code", "sane_lists", "toc"]
     )

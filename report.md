@@ -1,10 +1,10 @@
 ---
 title: "Predicting Building Heating Load: An End-to-End Machine Learning Mini Project"
-subtitle: "Energy Efficiency Dataset (UCI ENB2012) — Regression with Scikit-learn, Pipeline, Tuning, Pickle, Streamlit and Deployment"
+subtitle: "Energy Efficiency Dataset (UCI ENB2012): Regression with Scikit-learn, Pipeline, Tuning, Pickle, Streamlit and Deployment"
 author:
-  - "Vicky Nachna — 253301049"
-  - "Sachdev Parihar — 253301039"
-date: "Machine Learning Mini Project — November 2026"
+  - "Vicky Nachna, 253301049"
+  - "Sachdev Parihar, 253301039"
+date: "Machine Learning Mini Project, November 2026"
 geometry: margin=2.2cm
 fontsize: 11pt
 ---
@@ -15,7 +15,7 @@ fontsize: 11pt
 
 Energy Efficiency Dataset (UCI ENB2012)
 
-Team members: Vicky Nachna (253301049) and Sachdev Parihar (253301039) — a two-member team, as permitted.
+Team members: Vicky Nachna (253301049) and Sachdev Parihar (253301039), a two-member team, as permitted.
 
 Course: Machine Learning Mini Project · Submission date: November 2026
 
@@ -33,8 +33,8 @@ the other member implemented. See Section 18 for the individual contribution sta
 
 # 3. Abstract
 
-This project predicts the **heating load** of a residential building — the
-energy required to maintain a comfortable indoor temperature — from its
+This project predicts the **heating load** of a residential building, that is,
+the energy required to maintain a comfortable indoor temperature, from its
 structural geometry and glazing properties. Using the UCI Energy Efficiency
 dataset (768 simulated buildings, 8 numeric features), four regression
 algorithms were compared inside reproducible scikit-learn `Pipeline` objects,
@@ -54,7 +54,7 @@ deployment instructions.
 ## 4.1 Prediction problem
 
 Buildings account for a large share of energy use, and heating demand is
-strongly affected by decisions made early in design — shape, height, and the
+strongly affected by decisions made early in design: shape, height, and the
 amount and placement of glazing. A designer who could estimate heating load from
 these cheap-to-know properties alone would be able to screen alternatives long
 before a full simulation is available.
@@ -89,7 +89,7 @@ before a full simulation is available.
 | **Name** | Energy Efficiency (ENB2012) |
 | **Source** | UCI Machine Learning Repository |
 | **Access link** | https://archive.ics.uci.edu/dataset/242/energy+efficiency |
-| **Citation** | Tsanas, A. & Xifara, A. (2012). *Accurate quantitative estimation of energy performance of residential buildings using statistical machine learning tools.* Energy and Buildings, 49, 560–567. |
+| **Citation** | Tsanas, A. & Xifara, A. (2012). *Accurate quantitative estimation of energy performance of residential buildings using statistical machine learning tools.* Energy and Buildings, 49, 560 to 567. |
 | **Records** | 768 buildings |
 | **Inputs** | 8 numeric features |
 | **Targets** | `Y1` heating load, `Y2` cooling load (only `Y1` is modelled) |
@@ -98,20 +98,20 @@ before a full simulation is available.
 
 The dataset was produced by simulating 768 building configurations in the
 software Ecotect. Every feature takes values from a small documented grid, so
-the data is fully balanced and complete — a deliberate choice by the original
+the data is fully balanced and complete, a deliberate choice by the original
 authors to allow systematic comparison.
 
 | Code | Feature | Unit / range | Type |
 |---|---|---|---|
-| X1 | Relative compactness | 0.62 – 0.98 | continuous |
-| X2 | Surface area | 514.5 – 808.5 m² | continuous |
-| X3 | Wall area | 245 – 416.5 m² | continuous |
-| X4 | Roof area | 110.25 – 220.5 m² | continuous |
+| X1 | Relative compactness | 0.62 to 0.98 | continuous |
+| X2 | Surface area | 514.5 to 808.5 m² | continuous |
+| X3 | Wall area | 245 to 416.5 m² | continuous |
+| X4 | Roof area | 110.25 to 220.5 m² | continuous |
 | X5 | Overall height | 3.5 or 7.0 m | binary (storeys) |
 | X6 | Orientation | 2=N, 3=E, 4=S, 5=W | circular categorical code |
 | X7 | Glazing area | 0, 0.10, 0.25, 0.40 | ordinal |
-| X8 | Glazing area distribution | 0 (none) – 5 | nominal code |
-| Y1 | **Heating load** | 6.01 – 43.10 kWh/m² | continuous target |
+| X8 | Glazing area distribution | 0 (none) to 5 | nominal code |
+| Y1 | **Heating load** | 6.01 to 43.10 kWh/m² | continuous target |
 
 `X6`, `X7` and `X8` are stored as numbers but are semantically categorical/ordinal;
 they are documented so that no reader mistakes them for continuous measurements.
@@ -124,7 +124,7 @@ The full executed analysis is in `notebooks/analysis.ipynb`; key findings follow
 **Completeness and duplicates.** 768 rows, zero missing values, zero duplicate
 records. No imputation or de-duplication is needed.
 
-**Distribution of the target.** Heating load ranges 6.01–43.10 kWh/m² with a
+**Distribution of the target.** Heating load ranges 6.01 to 43.10 kWh/m² with a
 mean of 22.31. The histogram is clearly **bimodal**, with modes near 12 and 32
 (Figure 2, left). The split corresponds roughly to single- versus
 double-storey buildings, which have very different compactness.
@@ -140,7 +140,7 @@ heating load (Figure 1).
 ![Heating load distribution and its relationship with compactness and glazing](figures/fig2_target.png)
 
 **What the relationship plots show.** In Figure 2 (middle and right), points
-form clearly separated horizontal bands — one band per overall height — and the
+form clearly separated horizontal bands, one band per overall height, and the
 relation between compactness/glazing and heating load is **non-linear and
 interacting**. This is a direct modelling signal: a single straight line will
 underfit, so tree ensembles or kernel methods are expected to win.
@@ -151,7 +151,7 @@ therefore **excluded from the feature set**; including it would leak the answer.
 **Decisions supported by EDA.**
 
 - No imputation; no dropping of rows.
-- Keep `X6`–`X8` as numeric codes; the models used handle them adequately because
+- Keep `X6` to `X8` as numeric codes; the models used handle them adequately because
   the levels are few and the relationships are non-monotone (trees) or the
   distances remain meaningful under scaling.
 - Use non-linear candidates (Random Forest, SVR) alongside a linear baseline,
@@ -159,7 +159,7 @@ therefore **excluded from the feature set**; including it would leak the answer.
 
 # 7. Data Preprocessing
 
-Preprocessing was kept minimal because the dataset is clean, and — critically —
+Preprocessing was kept minimal because the dataset is clean, and, critically,
 it was placed **inside** a `Pipeline` so that exactly the same transformation is
 applied at training, validation, testing and prediction time.
 
@@ -198,9 +198,9 @@ for a small, tabular, continuous-target dataset.
 
 ## 9.1 Metrics
 
-- **R²** — proportion of variance in heating load explained; the primary selection metric.
-- **RMSE** — root mean squared error in kWh/m², which penalises larger errors more heavily.
-- **MAE** — mean absolute error in kWh/m², interpretable as a typical miss.
+- **R²**: proportion of variance in heating load explained; the primary selection metric.
+- **RMSE**: root mean squared error in kWh/m², which penalises larger errors more heavily.
+- **MAE**: mean absolute error in kWh/m², interpretable as a typical miss.
 
 A model was **not** chosen because of a single lucky number. Selection used the
 **mean cross-validated R² across five folds on the training split**, which
@@ -219,7 +219,7 @@ hyperparameters tuned inside `GridSearchCV` (scoring on R², refitted on the bes
 
 | Model | CV R² | CV RMSE (kWh/m²) | Best hyperparameters |
 |---|---|---|---|
-| Linear Regression | 0.9146 | 2.916 | — |
+| Linear Regression | 0.9146 | 2.916 | n/a |
 | K-Nearest Neighbours | 0.9436 | 2.373 | `n_neighbors=5` |
 | Support Vector Regression (RBF) | 0.9968 | 0.566 | `C=1000, gamma=0.1, kernel='rbf'` |
 | **Random Forest** | **0.9974** | **0.512** | `n_estimators=100, max_depth=None, min_samples_leaf=1` |
@@ -228,7 +228,7 @@ hyperparameters tuned inside `GridSearchCV` (scoring on R², refitted on the bes
 
 - Linear Regression explains 91.5% of variance but leaves an RMSE near 2.9 kWh/m².
   The gap between it and the non-linear models (±0.25 kWh/m²) confirms the
-  **non-linearity visible in EDA** — glazing and compactness effects are
+  **non-linearity visible in EDA**: glazing and compactness effects are
   not linear across heights.
 - KNN improves on linear regression but plateaus, because the feature space is
   dominated by a few discrete levels and local averaging cannot separate
@@ -298,14 +298,14 @@ features into a model trained on scaled ones.
 
 The test results (Figure 3) are almost identical to the cross-validated
 estimates, which is the expected signature of a model that generalises rather
-than memorises. The typical error of about 0.35–0.49 kWh/m² is small relative
+than memorises. The typical error of about 0.35 to 0.49 kWh/m² is small relative
 to the 37 kWh/m² range of the target.
 
 ![Predicted versus actual heating load on the held-out test set](figures/fig3_pred_vs_actual.png)
 
 ## 11.3 Saving the model with Pickle
 
-The **complete fitted pipeline** — not just the estimator — is serialised with
+The **complete fitted pipeline**, not just the estimator, is serialised with
 `joblib.dump` to `models/heating_model.joblib`. The deployed app loads that file
 with `joblib.load` inside a cached function and calls `predict()` on it.
 Training and tuning are **not** repeated at prediction time: this is why a
@@ -317,7 +317,7 @@ prediction takes milliseconds instead of the ~25 seconds of a full training run.
 
 - **Title and description** state what is predicted and on which data.
 - **Input controls** mirror the dataset's actual value ranges:
-  - sliders for relative compactness (0.62–0.98) and glazing area (0–0.40);
+  - sliders for relative compactness (0.62 to 0.98) and glazing area (0 to 0.40);
   - numeric inputs for surface, wall and roof area;
   - a selectbox for overall height (3.5 m or 7.0 m);
   - selectboxes with **human-readable labels** for orientation (North/East/South/West)
@@ -364,18 +364,20 @@ GridSearchCV**. Steps taken:
 4. Pushed to GitHub.
 5. Deployed on Streamlit Community Cloud using `app.py` as the entry file.
 6. Opened the deployed link in a separate browser session and tested several
-   valid inputs.
+   valid inputs. With the default inputs the app returned 34.05 kWh/m²; raising
+   the glazing area from 0.25 to 0.40 returned 37.24 kWh/m², confirming that the
+   deployed app reads live inputs and serves the same pipeline as the local one.
 
-**Deployed link:** _to be added once the deployment is live._
+**Deployed link:** https://energy-efficiency-heating-load.streamlit.app/
 
 # 14. Results and Screenshots
 
 | Stage | R² | RMSE (kWh/m²) | MAE (kWh/m²) |
 |---|---|---|---|
-| Linear Regression (CV) | 0.9146 | 2.916 | — |
-| KNN (CV) | 0.9436 | 2.373 | — |
-| SVR (CV) | 0.9968 | 0.566 | — |
-| Random Forest (CV) | 0.9974 | 0.512 | — |
+| Linear Regression (CV) | 0.9146 | 2.916 | n/a |
+| KNN (CV) | 0.9436 | 2.373 | n/a |
+| SVR (CV) | 0.9968 | 0.566 | n/a |
+| Random Forest (CV) | 0.9974 | 0.512 | n/a |
 | **Random Forest (final test)** | **0.9977** | **0.493** | **0.354** |
 
 Figures: correlation analysis (Figure 1), target and relationship plots
@@ -419,10 +421,10 @@ validate the approach on measured building energy data before any practical use.
 
 # 17. References
 
-1. Tsanas, A., & Xifara, A. (2012). *Accurate quantitative estimation of energy performance of residential buildings using statistical machine learning tools.* Energy and Buildings, 49, 560–567.
+1. Tsanas, A., & Xifara, A. (2012). *Accurate quantitative estimation of energy performance of residential buildings using statistical machine learning tools.* Energy and Buildings, 49, 560 to 567.
 2. UCI Machine Learning Repository. *Energy Efficiency* dataset. https://archive.ics.uci.edu/dataset/242/energy+efficiency
-3. Pedregosa, F., et al. (2011). *Scikit-learn: Machine Learning in Python.* Journal of Machine Learning Research, 12, 2825–2830.
-4. Breiman, L. (2001). *Random Forests.* Machine Learning, 45(1), 5–32.
+3. Pedregosa, F., et al. (2011). *Scikit-learn: Machine Learning in Python.* Journal of Machine Learning Research, 12, 2825 to 2830.
+4. Breiman, L. (2001). *Random Forests.* Machine Learning, 45(1), 5 to 32.
 5. Drucker, H., Burges, C. J. C., Kaufman, L., Smola, A., & Vapnik, V. (1997). *Support Vector Regression Machines.* Advances in Neural Information Processing Systems 9.
 6. Streamlit documentation. https://docs.streamlit.io
 

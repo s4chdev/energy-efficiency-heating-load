@@ -4,10 +4,12 @@ A machine-learning mini project that predicts a building's **heating load**
 (energy required to keep the interior warm, in kWh/m²) from its geometry and
 glazing properties, and serves the prediction through a Streamlit app.
 
+**Live app:** https://energy-efficiency-heating-load.streamlit.app/
+
 ## Problem statement
 
-- **Prediction target:** heating load (`Y1`) — a continuous, positive quantity → **regression**.
-- **Input features:** 8 structural variables of a simulated building —
+- **Prediction target:** heating load (`Y1`), a continuous, positive quantity, so the task is **regression**.
+- **Input features:** 8 structural variables of a simulated building:
   relative compactness, surface area, wall area, roof area, overall height,
   orientation, glazing area, and glazing area distribution.
 - **Who would use it:** architecture/energy students or early-stage building
@@ -18,11 +20,11 @@ glazing properties, and serves the prediction through a Streamlit app.
 
 ## Dataset
 
-- **Source:** UCI Machine Learning Repository — *Energy Efficiency* (ENB2012)
+- **Source:** UCI Machine Learning Repository: *Energy Efficiency* (ENB2012)
 - **Link:** https://archive.ics.uci.edu/dataset/242/energy+efficiency
 - **Citation:** Tsanas, A. & Xifara, A. (2012). *Accurate quantitative estimation of energy
   performance of residential buildings using statistical machine learning tools.*
-  Energy and Buildings, 49, 560–567.
+  Energy and Buildings, 49, 560 to 567.
 - **Size:** 768 records, 8 features, 2 targets (`Y1` heating load used, `Y2` cooling load excluded).
 
 ### Downloading the data
@@ -54,7 +56,7 @@ ml-project/
 
 ## Method
 
-1. **Split:** 80/20 train–test, `random_state=42`; the test set is only used once at the end.
+1. **Split:** 80/20 train to test, `random_state=42`; the test set is only used once at the end.
 2. **Preprocessing:** `StandardScaler` (helps KNN/SVR; harmless for trees) inside a `Pipeline`,
    so it is fitted on training folds only.
 3. **Models compared:** Linear Regression, K-Nearest Neighbours, SVR, Random Forest.
@@ -68,7 +70,7 @@ ml-project/
 
 | Model | CV R² | CV RMSE | Selected hyperparameters |
 |---|---|---|---|
-| Linear Regression | 0.9146 | 2.916 | — |
+| Linear Regression | 0.9146 | 2.916 | n/a |
 | K-Nearest Neighbours | 0.9436 | 2.373 | `n_neighbors=5` |
 | SVR (RBF) | 0.9968 | 0.566 | `C=1000, gamma=0.1` |
 | **Random Forest** | **0.9974** | **0.512** | `n_estimators=100, max_depth=None, min_samples_leaf=1` |
@@ -107,7 +109,7 @@ deployed as-is on **Streamlit Community Cloud**, with:
 - **Python version:** 3.12
 - **Dependencies:** `requirements.txt` (pinned to the versions the model was trained with)
 
-**Deployed link:** _to be added after deployment._
+**Deployed link:** https://energy-efficiency-heating-load.streamlit.app/
 
 ## Documentation
 

@@ -1,4 +1,4 @@
-# Extra tooling for local development and the report — not required to run the app.
+# Extra tooling for local development and the report. Not required to run the app.
 -r requirements.txt
 
 ipykernel>=6.29
