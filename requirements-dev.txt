@@ -1,0 +1,7 @@
+# Extra tooling for local development and the report — not required to run the app.
+-r requirements.txt
+
+ipykernel>=6.29
+jupyter>=1.0
+matplotlib>=3.8
+nbconvert>=7.16

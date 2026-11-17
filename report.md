@@ -358,7 +358,9 @@ GridSearchCV**. Steps taken:
 1. Tested the complete project locally (`train_model.py` then `streamlit run app.py`).
 2. Confirmed `app.py` and `models/heating_model.joblib` work together; the model
    path is resolved relative to `app.py`, so no absolute paths break on a server.
-3. Created `requirements.txt` with pinned minimum versions.
+3. Created `requirements.txt` with pinned versions matching the versions used in
+   training, and kept notebook and report tooling in a separate
+   `requirements-dev.txt` so the deployment build installs only what the app needs.
 4. Pushed to GitHub.
 5. Deployed on Streamlit Community Cloud using `app.py` as the entry file.
 6. Opened the deployed link in a separate browser session and tested several

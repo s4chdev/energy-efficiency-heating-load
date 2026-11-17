@@ -47,7 +47,8 @@ ml-project/
 │   └── results.json        # metrics of every candidate model
 ├── train_model.py          # trains, tunes, evaluates, saves the pipeline
 ├── app.py                  # Streamlit application
-├── requirements.txt
+├── requirements.txt        # runtime deps (used by the deployment)
+├── requirements-dev.txt    # notebook + report tooling (local only)
 └── README.md
 ```
 
@@ -84,7 +85,9 @@ weaker score confirms the relationships are non-linear.
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.txt          # runtime only
+# or, to also run the notebook and rebuild the report:
+pip install -r requirements-dev.txt
 
 python train_model.py     # optional: retrain (≈25 s)
 streamlit run app.py
@@ -98,7 +101,11 @@ streamlit run app.py
 
 The deployed app must load `models/heating_model.joblib` and must not retrain.
 The model path is resolved relative to `app.py`, so the repository can be
-deployed as-is (e.g. on Streamlit Community Cloud with `app.py` as the entry file).
+deployed as-is on **Streamlit Community Cloud**, with:
+
+- **Main file path:** `app.py`
+- **Python version:** 3.12
+- **Dependencies:** `requirements.txt` (pinned to the versions the model was trained with)
 
 **Deployed link:** _to be added after deployment._
 

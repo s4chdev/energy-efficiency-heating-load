@@ -9,3 +9,6 @@ report.html
 
 # Trained artefacts are reproducible with `python train_model.py`,
 # but are committed on purpose so the deployed app can load them.
+
+# Local-only helper that bootstrapped the initial commit history
+setup_git_history.sh
