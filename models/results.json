@@ -1,0 +1,53 @@
+{
+  "selected_model": "RandomForestRegressor",
+  "features": [
+    "relative_compactness",
+    "surface_area",
+    "wall_area",
+    "roof_area",
+    "overall_height",
+    "orientation",
+    "glazing_area",
+    "glazing_area_distribution"
+  ],
+  "target": "heating_load",
+  "n_train": 614,
+  "n_test": 154,
+  "models": {
+    "LinearRegression": {
+      "best_params": {},
+      "cv_r2": 0.9146075356576218,
+      "cv_rmse": 2.9158259743818413
+    },
+    "KNeighborsRegressor": {
+      "best_params": {
+        "model__n_neighbors": "5"
+      },
+      "cv_r2": 0.9436471172820694,
+      "cv_rmse": 2.3728785353625144
+    },
+    "SVR": {
+      "best_params": {
+        "model__C": "1000",
+        "model__gamma": "0.1",
+        "model__kernel": "rbf"
+      },
+      "cv_r2": 0.9967911862554052,
+      "cv_rmse": 0.5659676100400021
+    },
+    "RandomForestRegressor": {
+      "best_params": {
+        "model__max_depth": "None",
+        "model__min_samples_leaf": "1",
+        "model__n_estimators": "100"
+      },
+      "cv_r2": 0.9973723463505395,
+      "cv_rmse": 0.5123428180156948
+    }
+  },
+  "test_metrics": {
+    "mae": 0.35402012987012876,
+    "rmse": 0.49342369303080014,
+    "r2": 0.9976641915645849
+  }
+}
